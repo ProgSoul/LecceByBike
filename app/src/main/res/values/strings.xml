@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lecce By Bike</string>
+    <string name="action_settings">Settings</string>
+    <string name="DRAWER_OPEN_DESCRIPTION">Open</string>
+    <string name="DRAWER_CLOSE_DESCRIPTION">Close</string>
+    <string name="maps_api_key">AIzaSyAV-vSsmsLjWSQeCTFOnuACDDIsO56DMOQ</string>
+
+    <string name="title_activity_splashscreen">SplashscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_bike_sharing_station_info">BikeSharingStationInfoActivity</string>
+
+    <string name="generic_text_font">pier-webfont.ttf</string>
+    <string name="main_title_font">Arkhip_font-webfont.ttf</string>
+    <string name="action_bar_title">LECCEBYBIKE</string>
+
+    <string-array name="fragment_titles">
+        <item>stazioni</item>
+        <item>stazioni</item>
+    </string-array>
+
+    <string-array name="fragment_sub_titles">
+        <item>mappa</item>
+        <item>lista</item>
+    </string-array>
+
+    <string-array name="fragment_tags">
+        <item>Stations Map Fragment</item>
+        <item>Stations List Fragment</item>
+    </string-array>
+
+    <string-array name="colors_palette">
+        <item>#F2B033</item>
+        <item>#BBBDC0</item>
+        <item>#EA645F</item>
+        <item>#673D4F</item>
+        <item>#3F7CAC</item>
+        <item>#D8DC6F</item>
+        <item>#D19C9B</item>
+        <item>#C654A0</item>
+        <item>#43CFEF</item>
+    </string-array>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+</resources>

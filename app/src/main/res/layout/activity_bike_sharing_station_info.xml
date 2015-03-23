@@ -1,0 +1,236 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:anytextview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MainAppColor"
+    android:orientation="vertical"
+    tools:context=".activities.BikeSharingStationInfoActivity">
+
+    <LinearLayout
+        android:id="@+id/layout_top"
+        android:background="@android:color/white"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <Button
+            android:id="@+id/title_bar_left_back"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@drawable/icone_indietro"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp" />
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/action_bar_title"
+            android:textColor="@color/MainAppColor"
+            android:textSize="18sp"
+            anytextview:typeface="@string/main_title_font" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_gravity="right" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:weightSum="4.0">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:weightSum="6.0"
+            android:layout_weight="2.0">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="2.0"
+                android:weightSum="5.0">
+
+                <RelativeLayout
+                    android:id="@+id/bike_sharing_basic_infos_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/White"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_weight="3.5">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="8dp">
+
+                        <com.ctrlplusz.anytextview.AnyTextView
+                            android:id="@+id/bikeSharingStationNameLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:text="Nome stazione"
+                            android:textColor="@color/MainAppColor"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            anytextview:typeface="@string/generic_text_font" />
+
+                        <com.ctrlplusz.anytextview.AnyTextView
+                            android:id="@+id/bikeSharingStationAddressLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:text="Indirizzo"
+                            android:textColor="@color/Black"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            anytextview:typeface="@string/generic_text_font" />
+                    </LinearLayout>
+
+                    <com.ctrlplusz.anytextview.AnyTextView
+                        android:id="@+id/bikeSharingStationStatusLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:text="ATTIVA"
+                        android:textColor="@color/MainAppColor"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        anytextview:typeface="@string/generic_text_font"
+                        android:paddingRight="8dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.5"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:id="@+id/bikeSharingStationImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:scaleType="centerCrop" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_action_directions"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginBottom="5dp" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/shadow_background"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:layout_weight="4.0"
+                android:weightSum="2.0">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center_vertical|center_horizontal">
+
+                    <com.ctrlplusz.anytextview.AnyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="bici disponibili"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/White"
+                        android:textStyle="bold"
+                        anytextview:typeface="@string/generic_text_font" />
+
+                    <com.ctrlplusz.anytextview.AnyTextView
+                        android:id="@+id/bikeSharingStationFreeBikesLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/White"
+                        android:textStyle="bold"
+                        anytextview:typeface="@string/generic_text_font"
+                        android:layout_marginTop="10dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/White" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center_vertical|center_horizontal">
+
+                    <com.ctrlplusz.anytextview.AnyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="posti disponibili"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/White"
+                        android:textStyle="bold"
+                        anytextview:typeface="@string/generic_text_font" />
+
+                    <com.ctrlplusz.anytextview.AnyTextView
+                        android:id="@+id/bikeSharingStationAvailablePlacesLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/White"
+                        android:textStyle="bold"
+                        anytextview:typeface="@string/generic_text_font"
+                        android:layout_marginTop="10dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <fragment
+            android:id="@+id/bikeSharingLocationMap"
+            class="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="2.0"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

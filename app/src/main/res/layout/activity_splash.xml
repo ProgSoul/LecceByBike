@@ -1,0 +1,81 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:anytextview="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/MainAppColor"
+    tools:context="progsoul.opendata.leccebybike.activities.SplashActivity"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="3.0">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="1.0">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/splashMainLogo"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/logo_01" />
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/splashMainNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LECCEBYBIKE"
+            android:textColor="@color/White"
+            android:textSize="25dp"
+            anytextview:typeface="@string/main_title_font"/>
+    </LinearLayout>
+
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:id="@+id/activity_splash_screen_progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:layout_weight="1.0"
+        android:animateLayoutChanges="true"
+        custom:progress_unreached_color="@color/LightGrey"
+        custom:progress_reached_color="@color/White"
+        custom:progress_unreached_bar_height="0.5dp"
+        custom:progress_reached_bar_height="1.5dp"
+        custom:progress_text_size="10sp"
+        custom:progress_text_color="@color/White"
+        custom:progress_text_offset="5dp"
+        custom:progress_text_visibility="visible"
+        custom:max="100" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="1.0">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/decorazioni_splash"
+            android:layout_marginBottom="8dp" />
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bike sharing a Lecce"
+            android:textColor="@color/White"
+            android:textSize="12sp"
+            anytextview:typeface="@string/main_title_font"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/decorazioni_splash"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
+</LinearLayout>

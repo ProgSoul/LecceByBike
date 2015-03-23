@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:anytextview="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:orientation="horizontal"
+    android:background="@color/White"
+    android:gravity="center_vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="5dp"
+        android:gravity="center_vertical">
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/bikeSharingStationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="Nome stazione"
+            android:textColor="#00b0a6"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            anytextview:typeface="@string/generic_text_font" />
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/bikeSharingStationAvailablePlaces"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:text="Posti disponibili: "
+            android:textColor="@color/Black"
+            android:textSize="12dp"
+            android:textStyle="normal"
+            anytextview:typeface="@string/generic_text_font" />
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/bikeSharingStationFreeBikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:text="Bici disponibili: "
+            android:textColor="@color/Black"
+            android:textSize="12dp"
+            android:textStyle="normal"
+            anytextview:typeface="@string/generic_text_font" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/bikeSharingInfoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_next_item" />
+</LinearLayout>

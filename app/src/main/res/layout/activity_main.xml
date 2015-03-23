@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:anytextview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="progsoul.opendata.leccebybike.activities.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/layout_top"
+        android:background="@android:color/white"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <Button
+            android:id="@+id/title_bar_left_menu"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@drawable/icone_menu_chiuso"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp" />
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/action_bar_title"
+            android:textColor="@color/MainAppColor"
+            android:textSize="18sp"
+            anytextview:typeface="@string/main_title_font" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/main_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"/>
+
+</LinearLayout>
