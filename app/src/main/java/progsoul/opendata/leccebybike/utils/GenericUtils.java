@@ -1,15 +1,20 @@
 package progsoul.opendata.leccebybike.utils;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.util.Pair;
 import android.util.Log;
+
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
+import progsoul.opendata.leccebybike.entities.CyclePath;
 
 /**
  * Created by ProgSoul on 10/03/2015.
@@ -61,5 +66,32 @@ public class GenericUtils {
         return Math.round((float) dp * density);
     }
 
+    public static String getStreetViewImageURL(double latitude, double longitude) {
+        String googleStreetViewApiKey = "AIzaSyDoE0akrBvl1f3IIRLpuXpVBDsxTfa4ceg";
 
+        StringBuilder streetViewImageURL = new StringBuilder();
+        streetViewImageURL.append("http://maps.googleapis.com/maps/api/streetview?size=600x400&location=");
+        streetViewImageURL.append(latitude + "," + longitude);
+        streetViewImageURL.append("&sensor=false&key=" + googleStreetViewApiKey);
+        streetViewImageURL.append("&heading=250&fov=90&pitch=-10");
+
+        return streetViewImageURL.toString();
+    }
+
+    public static Pair<Integer, Float> getColorBasedOnCyclePathType(CyclePath cyclePath, String[] colors) {
+        switch (cyclePath.getFeatures().getType()) {
+            case STRADA:
+                return new Pair<>(Color.parseColor(colors[8]), BitmapDescriptorFactory.HUE_AZURE);
+            case CICLOSTRADA:
+                return new Pair<>(Color.parseColor(colors[2]), BitmapDescriptorFactory.HUE_RED);
+            case SENTIERO:
+                return new Pair<>(Color.parseColor(colors[4]), BitmapDescriptorFactory.HUE_BLUE);
+            case CICLABILE:
+                return new Pair<>(Color.parseColor(colors[5]), BitmapDescriptorFactory.HUE_YELLOW);
+            case CICLOPEDONALE:
+                return new Pair<>(Color.parseColor(colors[7]), BitmapDescriptorFactory.HUE_MAGENTA);
+            default:
+                return null;
+        }
+    }
 }

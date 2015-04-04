@@ -13,6 +13,8 @@ import android.view.animation.AnimationUtils;
 import progsoul.opendata.leccebybike.R;
 import progsoul.opendata.leccebybike.fragments.BikeSharingStationsListFragment;
 import progsoul.opendata.leccebybike.fragments.BikeSharingStationsMapFragment;
+import progsoul.opendata.leccebybike.fragments.CyclePathsListFragment;
+import progsoul.opendata.leccebybike.fragments.CyclePathsMapFragment;
 import progsoul.opendata.leccebybike.libs.residemenu.ResideMenu;
 import progsoul.opendata.leccebybike.libs.residemenu.ResideMenuItem;
 import progsoul.opendata.leccebybike.utils.Constants;
@@ -51,7 +53,7 @@ public class MainActivity extends FragmentActivity {
         findViewById(R.id.title_bar_left_menu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.click_animation));
+                //view.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.click_animation));
 
                 resideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
             }
@@ -77,7 +79,7 @@ public class MainActivity extends FragmentActivity {
     private View.OnClickListener resideMenuItemClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            v.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.click_animation));
+            //v.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.click_animation));
 
             ResideMenuItem resideMenuItem = (ResideMenuItem) v;
             switch(resideMenuItem.getItemTag()) {
@@ -86,6 +88,12 @@ public class MainActivity extends FragmentActivity {
                     break;
                 case Constants.STATIONS_MAP_FRAGMENT_TAG:
                     changeFragment(new BikeSharingStationsMapFragment());
+                    break;
+                case Constants.CYCLE_PATHS_MAP_FRAGMENT_TAG:
+                    changeFragment(new CyclePathsMapFragment());
+                    break;
+                case Constants.CYCLE_PATHS_LIST_FRAGMENT_TAG:
+                    changeFragment(new CyclePathsListFragment());
                     break;
             }
 
@@ -110,7 +118,7 @@ public class MainActivity extends FragmentActivity {
         }
     };
 
-    private void changeFragment(Fragment targetFragment) {
+    public void changeFragment(Fragment targetFragment) {
         resideMenu.clearIgnoredViewList();
         getSupportFragmentManager()
                 .beginTransaction()

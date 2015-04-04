@@ -18,29 +18,31 @@ import java.util.ArrayList;
 import progsoul.opendata.leccebybike.R;
 import progsoul.opendata.leccebybike.activities.BikeSharingStationInfoActivity;
 import progsoul.opendata.leccebybike.entities.BikeSharingStation;
-import progsoul.opendata.leccebybike.interfaces.AsyncTaskResponse;
+import progsoul.opendata.leccebybike.entities.CyclePath;
+import progsoul.opendata.leccebybike.interfaces.AsyncRetrieveBikeSharingStationsTaskResponse;
+import progsoul.opendata.leccebybike.interfaces.AsyncRetrieveCyclePathsTaskResponse;
 import progsoul.opendata.leccebybike.libs.custompulltorefresh.PullToRefreshView;
 import progsoul.opendata.leccebybike.listeners.RecyclerItemClickListener;
 import progsoul.opendata.leccebybike.tasks.RetrieveBikeSharingStationsTask;
-import progsoul.opendata.leccebybike.utils.BikeSharingStationsSharedPreferences;
+import progsoul.opendata.leccebybike.utils.CustomSharedPreferences;
 import progsoul.opendata.leccebybike.utils.Constants;
 
 /**
  * Created by ProgSoul on 19/03/2015.
  */
-public class BikeSharingStationsListFragment extends Fragment implements AsyncTaskResponse{
+public class BikeSharingStationsListFragment extends Fragment implements AsyncRetrieveBikeSharingStationsTaskResponse {
     private BikeSharingListRecyclerViewAdapter adapter;
     private PullToRefreshView pullToRefreshView;
-    private ArrayList<BikeSharingStation> bikeSharingStations;
+    public ArrayList<BikeSharingStation> bikeSharingStations;
     private RecyclerView bikeSharingStationsRecyclerListView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_bike_sharing_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_recycler_view_list, container, false);
 
         bikeSharingStationsRecyclerListView = (RecyclerView) rootView.findViewById(R.id.list_view);
-        bikeSharingStations = BikeSharingStationsSharedPreferences.getSavedBikeSharingStations(getActivity());
-        adapter = new BikeSharingListRecyclerViewAdapter(bikeSharingStations);
+        bikeSharingStations = CustomSharedPreferences.getSavedBikeSharingStations(getActivity());
+        adapter = new BikeSharingListRecyclerViewAdapter();
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         bikeSharingStationsRecyclerListView.setLayoutManager(layoutManager);
@@ -76,16 +78,15 @@ public class BikeSharingStationsListFragment extends Fragment implements AsyncTa
 
     @Override
     public void onAsyncTaskCompleted(ArrayList<BikeSharingStation> bikeSharingStations) {
-        if (bikeSharingStations != null && !bikeSharingStations.isEmpty() && !bikeSharingStations.equals(BikeSharingStationsSharedPreferences.getSavedBikeSharingStations(getActivity()))) {
+        if (bikeSharingStations != null && !bikeSharingStations.isEmpty() && !bikeSharingStations.equals(CustomSharedPreferences.getSavedBikeSharingStations(getActivity()))) {
             adapter.setBikeSharingStations(bikeSharingStations);
-            BikeSharingStationsSharedPreferences.saveBikeSharingStations(getActivity(), bikeSharingStations);
+            CustomSharedPreferences.saveBikeSharingStations(getActivity(), bikeSharingStations);
         }
 
         pullToRefreshView.setRefreshing(false);
     }
 
-    public class BikeSharingListRecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder> {
-        private ArrayList<BikeSharingStation> bikeSharingStations;
+    private class BikeSharingListRecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder> {
         private String[] colors;
         private LayoutInflater layoutInflater;
         private Integer[] iconDrawableResources = {
@@ -102,23 +103,19 @@ public class BikeSharingStationsListFragment extends Fragment implements AsyncTa
                 R.drawable.stazione_torredelparco
         };
 
-        BikeSharingListRecyclerViewAdapter(ArrayList<BikeSharingStation> bikeSharingStations) {
-            if (bikeSharingStations == null)
-                throw new IllegalArgumentException("items must not be null");
-
+        BikeSharingListRecyclerViewAdapter() {
             this.colors = getResources().getStringArray(R.array.colors_palette);
-            this.bikeSharingStations = bikeSharingStations;
             this.layoutInflater = getActivity().getLayoutInflater();
         }
 
-        public void setBikeSharingStations(ArrayList<BikeSharingStation> bikeSharingStations) {
-            this.bikeSharingStations = bikeSharingStations;
+        public void setBikeSharingStations(ArrayList<BikeSharingStation> newBikeSharingStations) {
+            bikeSharingStations = newBikeSharingStations;
             notifyDataSetChanged();
         }
 
         @Override
         public ListItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-            View itemView = layoutInflater.inflate(R.layout.item_row, viewGroup, false);
+            View itemView = layoutInflater.inflate(R.layout.bike_sharing_station_item_row, viewGroup, false);
             return new ListItemViewHolder(itemView);
         }
 

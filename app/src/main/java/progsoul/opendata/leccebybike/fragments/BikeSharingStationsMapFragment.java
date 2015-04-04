@@ -1,6 +1,5 @@
 package progsoul.opendata.leccebybike.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,7 +27,7 @@ import progsoul.opendata.leccebybike.activities.BikeSharingStationInfoActivity;
 import progsoul.opendata.leccebybike.activities.MainActivity;
 import progsoul.opendata.leccebybike.entities.BikeSharingStation;
 import progsoul.opendata.leccebybike.libs.residemenu.ResideMenu;
-import progsoul.opendata.leccebybike.utils.BikeSharingStationsSharedPreferences;
+import progsoul.opendata.leccebybike.utils.CustomSharedPreferences;
 import progsoul.opendata.leccebybike.utils.Constants;
 
 /**
@@ -40,8 +39,8 @@ public class BikeSharingStationsMapFragment extends Fragment implements OnMapRea
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View parentView = inflater.inflate(R.layout.fragment_bike_sharing_map, container, false);
-        bikeSharingStations = BikeSharingStationsSharedPreferences.getSavedBikeSharingStations(getActivity());
+        View parentView = inflater.inflate(R.layout.fragment_map, container, false);
+        bikeSharingStations = CustomSharedPreferences.getSavedBikeSharingStations(getActivity());
 
         ResideMenu resideMenu = ((MainActivity) getActivity()).getResideMenu();
 
@@ -96,7 +95,7 @@ public class BikeSharingStationsMapFragment extends Fragment implements OnMapRea
 
         @Override
         public View getInfoContents(Marker marker) {
-            View customInfoWindow = getActivity().getLayoutInflater().inflate(R.layout.custom_info_window, null);
+            View customInfoWindow = getActivity().getLayoutInflater().inflate(R.layout.bike_sharing_station_info_window, null);
             BikeSharingStation bikeSharingStation = markersHashMap.get(marker);
 
             TextView bikeSharingStationNameTextView = (TextView) customInfoWindow.findViewById(R.id.bikeSharingStationName);

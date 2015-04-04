@@ -9,7 +9,7 @@ import progsoul.opendata.leccebybike.entities.BikeSharingStation;
  * @author ProgSoul
  *
  */
-public interface AsyncTaskResponse {
+public interface AsyncRetrieveBikeSharingStationsTaskResponse {
     /**
      * Pass the response object to this method in order to manage it in an activity
      */

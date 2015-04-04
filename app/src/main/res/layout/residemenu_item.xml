@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:anytextview="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/White"
     android:orientation="vertical"
     android:paddingBottom="15dp"
-    android:paddingTop="15dp"
-    android:background="@color/White"
     android:paddingLeft="15dp"
-    android:paddingRight="15dp">
+    android:paddingRight="15dp"
+    android:paddingTop="15dp">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -19,21 +18,21 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="stazione"
             android:textColor="@color/MainAppColor"
             android:textSize="18sp"
-            android:text="stazione"
             anytextview:typeface="@string/generic_text_font" />
 
         <com.ctrlplusz.anytextview.AnyTextView
             android:id="@+id/tv_sub_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="lista"
-            android:textColor="@color/MainAppColor"
             android:layout_alignRight="@+id/tv_title"
             android:layout_below="@+id/tv_title"
-            anytextview:typeface="@string/generic_text_font"/>
+            android:text="lista"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/MainAppColor"
+            anytextview:typeface="@string/generic_text_font" />
     </RelativeLayout>
 
 </LinearLayout>

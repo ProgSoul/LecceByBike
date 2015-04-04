@@ -1,9 +1,7 @@
 package progsoul.opendata.leccebybike.activities;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -16,12 +14,12 @@ import java.util.Random;
 
 import progsoul.opendata.leccebybike.R;
 import progsoul.opendata.leccebybike.entities.BikeSharingStation;
-import progsoul.opendata.leccebybike.interfaces.AsyncTaskResponse;
+import progsoul.opendata.leccebybike.interfaces.AsyncRetrieveBikeSharingStationsTaskResponse;
 import progsoul.opendata.leccebybike.tasks.RetrieveBikeSharingStationsTask;
-import progsoul.opendata.leccebybike.utils.BikeSharingStationsSharedPreferences;
+import progsoul.opendata.leccebybike.utils.CustomSharedPreferences;
 import progsoul.opendata.leccebybike.utils.Constants;
 
-public class SplashActivity extends Activity implements AsyncTaskResponse{
+public class SplashActivity extends Activity implements AsyncRetrieveBikeSharingStationsTaskResponse {
     private Integer[] splashLogoDrawableResources = {
             R.drawable.logo_01,
             R.drawable.logo_02,
@@ -55,7 +53,7 @@ public class SplashActivity extends Activity implements AsyncTaskResponse{
     @Override
     public void onAsyncTaskCompleted(ArrayList<BikeSharingStation> bikeSharingStations) {
         if (bikeSharingStations != null && !bikeSharingStations.isEmpty()) {
-            BikeSharingStationsSharedPreferences.saveBikeSharingStations(this, bikeSharingStations);
+            CustomSharedPreferences.saveBikeSharingStations(this, bikeSharingStations);
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else

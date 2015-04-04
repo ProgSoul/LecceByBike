@@ -18,9 +18,13 @@
     <string-array name="fragment_titles">
         <item>stazioni</item>
         <item>stazioni</item>
+        <item>piste ciclabili</item>
+        <item>piste ciclabili</item>
     </string-array>
 
     <string-array name="fragment_sub_titles">
+        <item>mappa</item>
+        <item>lista</item>
         <item>mappa</item>
         <item>lista</item>
     </string-array>
@@ -28,6 +32,8 @@
     <string-array name="fragment_tags">
         <item>Stations Map Fragment</item>
         <item>Stations List Fragment</item>
+        <item>Cycle Paths Map Fragment</item>
+        <item>Cycle Paths List Fragment</item>
     </string-array>
 
     <string-array name="colors_palette">
@@ -44,4 +50,5 @@
     <string name="title_activity_main">MainActivity</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_cycle_path_info">CyclePathInfoActivity</string>
 </resources>

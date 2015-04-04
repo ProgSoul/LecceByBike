@@ -1,11 +1,7 @@
 package progsoul.opendata.leccebybike.tasks;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
 
@@ -23,26 +19,23 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.util.ArrayList;
 
-import progsoul.opendata.leccebybike.activities.MainActivity;
 import progsoul.opendata.leccebybike.entities.BikeSharingStation;
-import progsoul.opendata.leccebybike.interfaces.AsyncTaskResponse;
-import progsoul.opendata.leccebybike.utils.Constants;
+import progsoul.opendata.leccebybike.interfaces.AsyncRetrieveBikeSharingStationsTaskResponse;
+import progsoul.opendata.leccebybike.utils.GenericUtils;
 
 /**
  * Created by ProgSoul on 08/03/2015.
  */
 public class RetrieveBikeSharingStationsTask extends AsyncTask<Void, Integer, Integer> {
     private NumberProgressBar progressBar;
-    private String googleStreetViewApiKey = "AIzaSyDoE0akrBvl1f3IIRLpuXpVBDsxTfa4ceg";
-    private final String bikeSharingInfosURL = "http://www.bloodynose.it/openlecce/retrievebikesharinginfos.php";
-    private AsyncTaskResponse delegate;
+    private AsyncRetrieveBikeSharingStationsTaskResponse delegate;
     private ArrayList<BikeSharingStation> bikeSharingStations;
 
-    public RetrieveBikeSharingStationsTask(AsyncTaskResponse delegate) {
+    public RetrieveBikeSharingStationsTask(AsyncRetrieveBikeSharingStationsTaskResponse delegate) {
         this(null, delegate);
     }
 
-    public RetrieveBikeSharingStationsTask(NumberProgressBar progressBar, AsyncTaskResponse delegate) {
+    public RetrieveBikeSharingStationsTask(NumberProgressBar progressBar, AsyncRetrieveBikeSharingStationsTaskResponse delegate) {
         this.progressBar = progressBar;
         this.delegate = delegate;
         this.bikeSharingStations = new ArrayList<>();
@@ -53,6 +46,7 @@ public class RetrieveBikeSharingStationsTask extends AsyncTask<Void, Integer, In
         try {
             // http client
             DefaultHttpClient httpClient = new DefaultHttpClient();
+            String bikeSharingInfosURL = "http://bloodynose.it/notar/bikesharingstations/retrievebikesharinginfos.php";
             HttpGet httpGet = new HttpGet(bikeSharingInfosURL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             HttpEntity httpEntity = httpResponse.getEntity();
@@ -103,19 +97,9 @@ public class RetrieveBikeSharingStationsTask extends AsyncTask<Void, Integer, In
         String address = obj.getString("address");
         double latitude = Double.valueOf(obj.getString("latitude"));
         double longitude =  Double.valueOf(obj.getString("longitude"));
-        String imageURL = getStreetViewImageURL(latitude, longitude);
+        String imageURL = GenericUtils.getStreetViewImageURL(latitude, longitude);
 
         return new BikeSharingStation(name, isOperative, freeBikes, address, availablePlaces, latitude, longitude, imageURL);
-    }
-
-    private String getStreetViewImageURL(double latitude, double longitude) {
-        StringBuilder streetViewImageURL = new StringBuilder();
-        streetViewImageURL.append("http://maps.googleapis.com/maps/api/streetview?size=600x400&location=");
-        streetViewImageURL.append(latitude + "," + longitude);
-        streetViewImageURL.append("&sensor=false&key=" + googleStreetViewApiKey);
-        streetViewImageURL.append("&heading=250&fov=90&pitch=-10");
-
-        return streetViewImageURL.toString();
     }
 
     @Override

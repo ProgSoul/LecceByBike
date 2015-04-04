@@ -51,9 +51,7 @@ public class BikeSharingStationInfoActivity extends Activity implements OnMapRea
             public void onClick(View v) {
                 v.startAnimation(AnimationUtils.loadAnimation(BikeSharingStationInfoActivity.this, R.anim.click_animation));
 
-                Intent returnIntent = new Intent();
-                setResult(RESULT_OK, returnIntent);
-                finish();
+                onBackPressed();
             }
         });
 

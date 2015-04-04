@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:anytextview="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="70dp"
+    android:background="@color/MainAppColor">
+
+    <LinearLayout
+        android:id="@+id/timeline_style_container"
+        android:orientation="vertical"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/cycle_path_name_label"
+        android:gravity="center_horizontal"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="10dp">
+
+        <com.ctrlplusz.anytextview.AnyTextView
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shadow_background"
+            android:gravity="center_horizontal"
+            android:text="tua posizione"
+            android:textColor="@color/White"
+            anytextview:typeface="@string/generic_text_font"
+            android:id="@+id/cycle_path_distance_label"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="fill_parent"
+            android:background="@color/White" />
+    </LinearLayout>
+
+    <com.ctrlplusz.anytextview.AnyTextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow_background"
+        android:gravity="center_horizontal"
+        android:text="pista ciclabile"
+        android:textColor="@color/White"
+        anytextview:typeface="@string/generic_text_font"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/timeline_style_container"
+        android:id="@+id/cycle_path_name_label"/>
+
+</RelativeLayout>
