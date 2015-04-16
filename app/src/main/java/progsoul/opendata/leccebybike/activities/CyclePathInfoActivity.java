@@ -131,7 +131,7 @@ public class CyclePathInfoActivity extends Activity implements OnMapReadyCallbac
         double[] longitudes = cyclePath.getLongitudes();
         for (int i = 0; i < latitudes.length; i++)
             polylineOptions.add(new LatLng(latitudes[i], longitudes[i]));
-        Pair<Integer, Float> polylineColor = GenericUtils.getColorBasedOnCyclePathType(cyclePath, getResources().getStringArray(R.array.colors_palette));
+        Pair<Integer, Float> polylineColor = GenericUtils.getColorBasedOnCyclePathType(cyclePath.getFeatures().getType(), getResources().getStringArray(R.array.colors_palette));
         polylineOptions.color(polylineColor.first);
 
         LatLng cyclePathBeginningCoordinates = new LatLng(latitudes[0], longitudes[0]);

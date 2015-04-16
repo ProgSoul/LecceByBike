@@ -26,8 +26,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.0.0'
-    compile 'com.google.android.gms:play-services-base:6.5.87'
-    compile 'com.google.android.gms:play-services-maps:6.5.87'
+    compile 'com.google.android.gms:play-services-base:7.0.0'
+    compile 'com.google.android.gms:play-services-maps:7.0.0'
     compile 'com.daimajia.numberprogressbar:library:1.2@aar'
     compile 'com.google.code.gson:gson:2.3'
     compile 'com.ctrlplusz.anytextview:library:1.2'

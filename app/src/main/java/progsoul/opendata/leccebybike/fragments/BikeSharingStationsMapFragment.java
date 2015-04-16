@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,6 +29,7 @@ import progsoul.opendata.leccebybike.activities.BikeSharingStationInfoActivity;
 import progsoul.opendata.leccebybike.activities.MainActivity;
 import progsoul.opendata.leccebybike.entities.BikeSharingStation;
 import progsoul.opendata.leccebybike.libs.residemenu.ResideMenu;
+import progsoul.opendata.leccebybike.libs.segmentedgroup.SegmentedGroup;
 import progsoul.opendata.leccebybike.utils.CustomSharedPreferences;
 import progsoul.opendata.leccebybike.utils.Constants;
 
@@ -36,10 +39,13 @@ import progsoul.opendata.leccebybike.utils.Constants;
 public class BikeSharingStationsMapFragment extends Fragment implements OnMapReadyCallback{
     private ArrayList<BikeSharingStation> bikeSharingStations;
     private Map<Marker, BikeSharingStation> markersHashMap = new HashMap<>();
+    private int lastCheckedId = -1;
+    private SegmentedGroup bikeStationTypeRadioGroup;
+    private GoogleMap googleMap;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View parentView = inflater.inflate(R.layout.fragment_map, container, false);
+        View parentView = inflater.inflate(R.layout.fragment_bike_sharing_stations_map, container, false);
         bikeSharingStations = CustomSharedPreferences.getSavedBikeSharingStations(getActivity());
 
         ResideMenu resideMenu = ((MainActivity) getActivity()).getResideMenu();
@@ -47,6 +53,10 @@ public class BikeSharingStationsMapFragment extends Fragment implements OnMapRea
         // add gesture operation's ignored views
         FrameLayout ignored_view = (FrameLayout) parentView.findViewById(R.id.ignored_view);
         resideMenu.addIgnoredView(ignored_view);
+
+        bikeStationTypeRadioGroup = (SegmentedGroup) parentView.findViewById(R.id.typeSegmentedGroup);
+        bikeStationTypeRadioGroup.setVisibility(View.GONE);
+        bikeStationTypeRadioGroup.setOnCheckedChangeListener(radioGroupListener);
 
         // get map with an async operation
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
@@ -56,12 +66,45 @@ public class BikeSharingStationsMapFragment extends Fragment implements OnMapRea
         return parentView;
     }
 
+    private RadioGroup.OnCheckedChangeListener radioGroupListener = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            googleMap.clear();
+            if (lastCheckedId == checkedId) {
+                lastCheckedId = -1;
+                populateMapWithAllBikeSharingStations();
+            } else {
+                lastCheckedId = checkedId;
+                RadioButton checkedRadioButton = (RadioButton) group.findViewById(checkedId);
+                boolean isBikeSharingStationEnabled = checkedRadioButton.getText().toString().equals("attive");
+                filterBikeSharingStationByEnabled(isBikeSharingStationEnabled);
+            }
+        }
+    };
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        this.googleMap = googleMap;
+
         LatLng lecceCoordinates = new LatLng(40.35152, 18.17502);
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lecceCoordinates, 13));
         googleMap.getUiSettings().setZoomControlsEnabled(true);
+        googleMap.setMyLocationEnabled(true);
+
+        // turns radio group visible only if map has been loaded
+        bikeStationTypeRadioGroup.setVisibility(View.VISIBLE);
+        populateMapWithAllBikeSharingStations();
+
+        googleMap.setInfoWindowAdapter(infoWindowAdapter);
+        googleMap.setOnInfoWindowClickListener(infoWindowClickListener);
+    }
+
+    private void populateMapWithAllBikeSharingStations() {
+        // if already populated, then clear all markers
+        if (!markersHashMap.isEmpty())
+            markersHashMap.clear();
+
         for(BikeSharingStation bikeSharingStation : bikeSharingStations) {
             //if bike station is operative, then color marker will be green, else red
             float hueColor = bikeSharingStation.isOperative() ? BitmapDescriptorFactory.HUE_GREEN : BitmapDescriptorFactory.HUE_RED;
@@ -71,8 +114,23 @@ public class BikeSharingStationsMapFragment extends Fragment implements OnMapRea
                     .icon(BitmapDescriptorFactory.defaultMarker(hueColor));
             markersHashMap.put(googleMap.addMarker(markerOptions), bikeSharingStation);
         }
-        googleMap.setInfoWindowAdapter(infoWindowAdapter);
-        googleMap.setOnInfoWindowClickListener(infoWindowClickListener);
+    }
+
+    private void filterBikeSharingStationByEnabled(boolean isBikeSharingStationEnabled) {
+        //clear hashmap from all markers already added
+        markersHashMap.clear();
+
+        float hueColor = isBikeSharingStationEnabled ? BitmapDescriptorFactory.HUE_GREEN : BitmapDescriptorFactory.HUE_RED;
+        for(BikeSharingStation bikeSharingStation : bikeSharingStations) {
+            //if bike station is operative, then color marker will be green, else red
+            if (isBikeSharingStationEnabled == bikeSharingStation.isOperative()) {
+                MarkerOptions markerOptions = new MarkerOptions()
+                        .title(bikeSharingStation.getName())
+                        .position(new LatLng(bikeSharingStation.getLatitude(), bikeSharingStation.getLongitude()))
+                        .icon(BitmapDescriptorFactory.defaultMarker(hueColor));
+                markersHashMap.put(googleMap.addMarker(markerOptions), bikeSharingStation);
+            }
+        }
     }
 
     private GoogleMap.OnInfoWindowClickListener infoWindowClickListener = new GoogleMap.OnInfoWindowClickListener() {

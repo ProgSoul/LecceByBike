@@ -78,8 +78,8 @@ public class GenericUtils {
         return streetViewImageURL.toString();
     }
 
-    public static Pair<Integer, Float> getColorBasedOnCyclePathType(CyclePath cyclePath, String[] colors) {
-        switch (cyclePath.getFeatures().getType()) {
+    public static Pair<Integer, Float> getColorBasedOnCyclePathType(CyclePath.TYPE type, String[] colors) {
+        switch (type) {
             case STRADA:
                 return new Pair<>(Color.parseColor(colors[8]), BitmapDescriptorFactory.HUE_AZURE);
             case CICLOSTRADA:

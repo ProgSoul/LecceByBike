@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ignored_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <progsoul.opendata.leccebybike.libs.segmentedgroup.SegmentedGroup
+        android:id="@+id/typeSegmentedGroup"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_gravity="left|bottom"
+        android:background="@color/White"
+        segmentedgroup:border_width="1dp"
+        segmentedgroup:corner_radius="0dp"
+        segmentedgroup:tint_color="@color/MainAppColor">
+
+        <progsoul.opendata.leccebybike.views.ToggleableRadioButton
+            android:id="@+id/stradaRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="strada"
+            style="@style/RadioButton" />
+        <progsoul.opendata.leccebybike.views.ToggleableRadioButton
+            android:id="@+id/ciclostradaRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ciclostrada"
+            style="@style/RadioButton" />
+        <progsoul.opendata.leccebybike.views.ToggleableRadioButton
+            android:id="@+id/sentieroRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="sentiero"
+            style="@style/RadioButton" />
+        <progsoul.opendata.leccebybike.views.ToggleableRadioButton
+            android:id="@+id/ciclabileRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ciclabile"
+            style="@style/RadioButton" />
+        <progsoul.opendata.leccebybike.views.ToggleableRadioButton
+            android:id="@+id/ciclopedonaleRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ciclopedonale"
+            style="@style/RadioButton" />
+
+    </progsoul.opendata.leccebybike.libs.segmentedgroup.SegmentedGroup>
+</FrameLayout>

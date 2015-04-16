@@ -103,12 +103,14 @@ public class CyclePathsListFragment extends Fragment implements AsyncRetrieveCyc
     private RecyclerItemClickListener recyclerItemClickListener = new RecyclerItemClickListener(getActivity(), cyclePathsRecyclerListView, new RecyclerItemClickListener.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
-            Intent intent = new Intent(getActivity(), CyclePathInfoActivity.class);
-            CyclePath cyclePath = cyclePaths.get(position);
-            Bundle bundle = new Bundle();
-            bundle.putParcelable(Constants.CYCLE_PATH, cyclePath);
-            intent.putExtras(bundle);
-            startActivityForResult(intent, 1);
+            if (position > 0) {
+                Intent intent = new Intent(getActivity(), CyclePathInfoActivity.class);
+                CyclePath cyclePath = cyclePaths.get(position - 1);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(Constants.CYCLE_PATH, cyclePath);
+                intent.putExtras(bundle);
+                startActivityForResult(intent, 1);
+            }
         }
 
         @Override
@@ -156,7 +158,7 @@ public class CyclePathsListFragment extends Fragment implements AsyncRetrieveCyc
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View inflatedRow = layoutInflater.inflate(R.layout.cycle_path_item_row, viewGroup, false);
+            final View inflatedRow = layoutInflater.inflate(R.layout.cycle_path_item_row, viewGroup, false);
             return new CyclePathViewHolder(inflatedRow);
         }
 
