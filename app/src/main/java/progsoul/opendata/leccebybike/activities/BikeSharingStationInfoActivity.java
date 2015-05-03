@@ -99,12 +99,13 @@ public class BikeSharingStationInfoActivity extends Activity implements OnMapRea
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        float hueColor = bikeSharingStation.isOperative() ? BitmapDescriptorFactory.HUE_GREEN : BitmapDescriptorFactory.HUE_RED;
+        //if bike station is operative, then color marker will be green, else red
+        int markerResourceId = bikeSharingStation.isOperative() ? R.drawable.marker_attiva : R.drawable.marker_nonattiva;
         LatLng bikeSharingStationCoordinates = new LatLng(bikeSharingStation.getLatitude(), bikeSharingStation.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions()
                 .title(bikeSharingStation.getName())
                 .position(bikeSharingStationCoordinates)
-                .icon(BitmapDescriptorFactory.defaultMarker(hueColor));
+                .icon(BitmapDescriptorFactory.fromResource(markerResourceId));
         googleMap.addMarker(markerOptions);
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bikeSharingStationCoordinates, 13));
     }

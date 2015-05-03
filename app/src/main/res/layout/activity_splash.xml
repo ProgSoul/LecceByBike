@@ -23,7 +23,7 @@
             android:layout_height="120dp"
             android:id="@+id/splashMainLogo"
             android:layout_marginBottom="20dp"
-            android:src="@drawable/logo_01" />
+            android:background="@drawable/logo_01" />
         <com.ctrlplusz.anytextview.AnyTextView
             android:id="@+id/splashMainNameLabel"
             android:layout_width="wrap_content"

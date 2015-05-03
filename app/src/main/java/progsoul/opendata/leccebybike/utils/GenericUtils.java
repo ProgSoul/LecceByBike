@@ -14,44 +14,13 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import progsoul.opendata.leccebybike.R;
 import progsoul.opendata.leccebybike.entities.CyclePath;
 
 /**
  * Created by ProgSoul on 10/03/2015.
  */
 public class GenericUtils {
-    public static List<Pair<String, Integer>> getColors(Context context) {
-        List<Pair<String, Integer>> colors = new ArrayList<>();
-        try {
-            Field[] fields = Class.forName(context.getPackageName() + ".R$color").getDeclaredFields();
-            for (Field field : fields) {
-                String colorName = field.getName();
-                int colorId = field.getInt(null);
-                int color = context.getResources().getColor(colorId);
-                colors.add(new Pair(colorName, color));
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return colors;
-    }
-
-    public static void CopyStream(InputStream is, OutputStream os) {
-        final int buffer_size = 1024;
-        try {
-            byte[] bytes = new byte[buffer_size];
-            for (;;) {
-                int count = is.read(bytes, 0, buffer_size);
-                if (count == -1)
-                    break;
-                os.write(bytes, 0, count);
-            }
-        } catch (Exception ex) {
-        }
-    }
-
     public static String ellipsize(String input, int maxLength) {
         String ellip = "...";
         if (input == null || input.length() <= maxLength
@@ -78,18 +47,18 @@ public class GenericUtils {
         return streetViewImageURL.toString();
     }
 
-    public static Pair<Integer, Float> getColorBasedOnCyclePathType(CyclePath.TYPE type, String[] colors) {
+    public static Pair<Integer, Integer> getColorBasedOnCyclePathType(CyclePath.TYPE type, String[] colors) {
         switch (type) {
             case STRADA:
-                return new Pair<>(Color.parseColor(colors[8]), BitmapDescriptorFactory.HUE_AZURE);
+                return new Pair<>(Color.parseColor(colors[8]), R.drawable.marker_strada);
             case CICLOSTRADA:
-                return new Pair<>(Color.parseColor(colors[2]), BitmapDescriptorFactory.HUE_RED);
+                return new Pair<>(Color.parseColor(colors[2]), R.drawable.marker_ciclostrada);
             case SENTIERO:
-                return new Pair<>(Color.parseColor(colors[4]), BitmapDescriptorFactory.HUE_BLUE);
+                return new Pair<>(Color.parseColor(colors[4]), R.drawable.marker_sentiero);
             case CICLABILE:
-                return new Pair<>(Color.parseColor(colors[5]), BitmapDescriptorFactory.HUE_YELLOW);
+                return new Pair<>(Color.parseColor(colors[5]), R.drawable.marker_ciclabile);
             case CICLOPEDONALE:
-                return new Pair<>(Color.parseColor(colors[7]), BitmapDescriptorFactory.HUE_MAGENTA);
+                return new Pair<>(Color.parseColor(colors[7]), R.drawable.marker_ciclopedonale);
             default:
                 return null;
         }

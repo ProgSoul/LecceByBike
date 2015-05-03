@@ -131,14 +131,14 @@ public class CyclePathInfoActivity extends Activity implements OnMapReadyCallbac
         double[] longitudes = cyclePath.getLongitudes();
         for (int i = 0; i < latitudes.length; i++)
             polylineOptions.add(new LatLng(latitudes[i], longitudes[i]));
-        Pair<Integer, Float> polylineColor = GenericUtils.getColorBasedOnCyclePathType(cyclePath.getFeatures().getType(), getResources().getStringArray(R.array.colors_palette));
-        polylineOptions.color(polylineColor.first);
+        Pair<Integer, Integer> colorMarkerPolylinePair = GenericUtils.getColorBasedOnCyclePathType(cyclePath.getFeatures().getType(), getResources().getStringArray(R.array.colors_palette));
+        polylineOptions.color(colorMarkerPolylinePair.first);
 
         LatLng cyclePathBeginningCoordinates = new LatLng(latitudes[0], longitudes[0]);
         MarkerOptions markerOptions = new MarkerOptions()
                 .title(cyclePath.getName())
                 .position(cyclePathBeginningCoordinates)
-                .icon(BitmapDescriptorFactory.defaultMarker(polylineColor.second));
+                .icon(BitmapDescriptorFactory.fromResource(colorMarkerPolylinePair.second));
         googleMap.addMarker(markerOptions);
         googleMap.addPolyline(polylineOptions);
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cyclePathBeginningCoordinates, 13));

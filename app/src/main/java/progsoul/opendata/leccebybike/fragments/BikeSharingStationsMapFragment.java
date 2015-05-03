@@ -107,11 +107,11 @@ public class BikeSharingStationsMapFragment extends Fragment implements OnMapRea
 
         for(BikeSharingStation bikeSharingStation : bikeSharingStations) {
             //if bike station is operative, then color marker will be green, else red
-            float hueColor = bikeSharingStation.isOperative() ? BitmapDescriptorFactory.HUE_GREEN : BitmapDescriptorFactory.HUE_RED;
+            int markerResourceId = bikeSharingStation.isOperative() ? R.drawable.marker_attiva : R.drawable.marker_nonattiva;
             MarkerOptions markerOptions = new MarkerOptions()
                     .title(bikeSharingStation.getName())
                     .position(new LatLng(bikeSharingStation.getLatitude(), bikeSharingStation.getLongitude()))
-                    .icon(BitmapDescriptorFactory.defaultMarker(hueColor));
+                    .icon(BitmapDescriptorFactory.fromResource(markerResourceId));
             markersHashMap.put(googleMap.addMarker(markerOptions), bikeSharingStation);
         }
     }
@@ -119,15 +119,15 @@ public class BikeSharingStationsMapFragment extends Fragment implements OnMapRea
     private void filterBikeSharingStationByEnabled(boolean isBikeSharingStationEnabled) {
         //clear hashmap from all markers already added
         markersHashMap.clear();
-
-        float hueColor = isBikeSharingStationEnabled ? BitmapDescriptorFactory.HUE_GREEN : BitmapDescriptorFactory.HUE_RED;
+        //if bike station is operative, then color marker will be green, else red
+        int markerResourceId = isBikeSharingStationEnabled ? R.drawable.marker_attiva : R.drawable.marker_nonattiva;
         for(BikeSharingStation bikeSharingStation : bikeSharingStations) {
             //if bike station is operative, then color marker will be green, else red
             if (isBikeSharingStationEnabled == bikeSharingStation.isOperative()) {
                 MarkerOptions markerOptions = new MarkerOptions()
                         .title(bikeSharingStation.getName())
                         .position(new LatLng(bikeSharingStation.getLatitude(), bikeSharingStation.getLongitude()))
-                        .icon(BitmapDescriptorFactory.defaultMarker(hueColor));
+                        .icon(BitmapDescriptorFactory.fromResource(markerResourceId));
                 markersHashMap.put(googleMap.addMarker(markerOptions), bikeSharingStation);
             }
         }

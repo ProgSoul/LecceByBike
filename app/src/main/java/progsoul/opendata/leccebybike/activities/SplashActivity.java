@@ -42,7 +42,7 @@ public class SplashActivity extends Activity implements AsyncRetrieveBikeSharing
 
         randomGenerator = new Random();
         ImageView splashMainLogoImageView = (ImageView) findViewById(R.id.splashMainLogo);
-        splashMainLogoImageView.setImageResource(splashLogoDrawableResources[randomGenerator.nextInt(splashLogoDrawableResources.length)]);
+        splashMainLogoImageView.setBackgroundResource(splashLogoDrawableResources[randomGenerator.nextInt(splashLogoDrawableResources.length)]);
 
         NumberProgressBar progressBar = (NumberProgressBar) findViewById(R.id.activity_splash_screen_progressBar);
         // calls the PHP script which retrieves informations about

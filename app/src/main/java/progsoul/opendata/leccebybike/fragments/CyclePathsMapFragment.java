@@ -140,20 +140,20 @@ public class CyclePathsMapFragment extends Fragment implements OnMapReadyCallbac
             double[] longitudes = cyclePath.getLongitudes();
             for (int i = 0; i < latitudes.length; i++)
                 polylineOptions.add(new LatLng(latitudes[i], longitudes[i]));
-            Pair<Integer, Float> polylineColor = GenericUtils.getColorBasedOnCyclePathType(cyclePath.getFeatures().getType(), colorsPalette);
-            polylineOptions.color(polylineColor.first);
+            Pair<Integer, Integer> colorMarkerPolylinePair = GenericUtils.getColorBasedOnCyclePathType(cyclePath.getFeatures().getType(), colorsPalette);
+            polylineOptions.color(colorMarkerPolylinePair.first);
 
             MarkerOptions markerOptions = new MarkerOptions()
                     .title(cyclePath.getName())
                     .position(new LatLng(latitudes[0], longitudes[0]))
-                    .icon(BitmapDescriptorFactory.defaultMarker(polylineColor.second));
+                    .icon(BitmapDescriptorFactory.fromResource(colorMarkerPolylinePair.second));
             markersHashMap.put(googleMap.addMarker(markerOptions), cyclePath);
             googleMap.addPolyline(polylineOptions);
         }
     }
 
     private void filterCyclePathsByType(CyclePath.TYPE type) {
-        Pair<Integer, Float> polylineColor = GenericUtils.getColorBasedOnCyclePathType(type, colorsPalette);
+        Pair<Integer, Integer> colorMarkerPolylinePair = GenericUtils.getColorBasedOnCyclePathType(type, colorsPalette);
         //clear hashmap from all markers already added
         markersHashMap.clear();
 
@@ -165,12 +165,12 @@ public class CyclePathsMapFragment extends Fragment implements OnMapReadyCallbac
                 double[] longitudes = cyclePath.getLongitudes();
                 for (int i = 0; i < latitudes.length; i++)
                     polylineOptions.add(new LatLng(latitudes[i], longitudes[i]));
-                polylineOptions.color(polylineColor.first);
+                polylineOptions.color(colorMarkerPolylinePair.first);
 
                 MarkerOptions markerOptions = new MarkerOptions()
                         .title(cyclePath.getName())
                         .position(new LatLng(latitudes[0], longitudes[0]))
-                        .icon(BitmapDescriptorFactory.defaultMarker(polylineColor.second));
+                        .icon(BitmapDescriptorFactory.fromResource(colorMarkerPolylinePair.second));
                 markersHashMap.put(googleMap.addMarker(markerOptions), cyclePath);
                 googleMap.addPolyline(polylineOptions);
             }
