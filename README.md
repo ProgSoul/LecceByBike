@@ -7,5 +7,5 @@ Tale applicazione, sviluppata per Android, si prefigge lo scopo di visualizzare 
  
 I dati che utilizza sono anch'essi un lavoro sviluppato per il contest e sono presenti nella seguente repository: https://github.com/ProgSoul/Open-Data-Lecce-2015
 
-L'app è disponibile all'indirizzo https://dl.dropboxusercontent.com/u/78651499/NightScanner.apk
+L'app è disponibile all'indirizzo https://dl.dropboxusercontent.com/u/78651499/LecceByBike.apk
 Presto sarà disponibile sul Google Play Store.
